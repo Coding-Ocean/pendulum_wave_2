@@ -5,18 +5,14 @@ public:
     PENDULUM() {}
     ~PENDULUM() {}
     void create(int i) {
-        //‚U‚O•bŠÔ‚ÉU‚èq‚ğ‰•œ‚³‚¹‚é‰ñ”‚ğw’è
+        //‚P‚W‚O•bŠÔ‚ÉU‚èq‚ğ‰•œ‚³‚¹‚é‰ñ”‚ğw’è
         int numRoundTrip = 80 - i;
 
-        //---‚U‚O•b‚ÅnumRoundTrip‰ñA‰•œ‚³‚¹‚é‚½‚ß‚ÌŠp“xŒvZ---
-        //‚P•b‚Å‰ñ“]‚³‚¹‚é§Œä—pŠp“x
-        float anglePerSec = 360.0f * numRoundTrip / 60.0f;
-        //‚PƒtƒŒ[ƒ€‚Å‰ÁZ‚·‚é§Œä—pŠp‘¬“x
-        AnglVelo = anglePerSec / (60.0f * 3);
-        
+        //---‚P‚W‚O•b‚ÅnumRoundTrip‰ñA‰•œ‚³‚¹‚é‚½‚ß‚ÌŠp“xŒvZ---
+        AnglVelo = numRoundTrip * 6.0f / (60.0f*3);
+
         //---U‚èq‚Ì•R‚Ì’·‚³---
         Length = 1100;
-
 
         //U‚èq‚Ìx“_ˆÊ’u
         Sx = width / 2;
