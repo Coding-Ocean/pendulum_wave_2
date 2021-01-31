@@ -8,8 +8,14 @@ public:
         //１８０秒間に振り子を往復させる回数を指定
         int numRoundTrip = 80 - i;
 
-        //---１８０秒でnumRoundTrip回、往復させるための角度計算---
-        AnglVelo = numRoundTrip * 6.0f / (60.0f*3);
+        //---１８０秒でnumRoundTrip回往復させるためには
+        //　１フレームで何度加算すればよいのか---
+        //まず、１８０秒で６０往復するとき１フレームで何度動かせばいいかを考える
+        //１往復にかける時間：１８０秒÷６０往復＝３秒
+        //３秒（１８０フレーム）で１往復するためには
+        //３６０度÷１８０フレーム＝２度 per frame
+        //２度：６０往復　=　AnglVelo ： numRoundTrip
+        AnglVelo = 2.0f * numRoundTrip / 60;
 
         //---振り子の紐の長さ---
         Length = 1100;
@@ -182,7 +188,7 @@ void gmain() {
     window(1920, 1080, full);
     ShowCursor(FALSE);
     PENDULUMS pendulums;
-    pendulums.create(39);
+    pendulums.create(1);
     while (notQuit) {
         pendulums.move();
         clear(10);
@@ -213,19 +219,4 @@ t = 2π√l/g
 
  情報世界では、周期だけ計算しておけば、
  紐の長さはどうでもよい。
-*/
-
-/*
-このプログラムにおける振り子制御の問題
-cos(Angle)は１とー１の間の値で変化する。
-これを振り子が振り切った最大の角度に掛けることで、
-振り子を揺らす角度を制御できる。
-
-１分で振り子が６０往復するには、
-Angleを１秒で０～３６０度まで変化させればよい。
-では、１分で振り子を８０往復させるには、
-Angleを１秒で０～何度まで変化させればよいでしょう。
-式:
-　60往復：360度＝80往復：x度
-　x=360×80÷60
 */
